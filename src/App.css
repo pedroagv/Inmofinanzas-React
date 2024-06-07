@@ -1,38 +1,45 @@
-.App {
-  text-align: center;
+:root {
+  --color-inicial-inmofinanza: #54bcec;
+  --color-final-inmofinanza: #20234b;
+  --color-fondo: rgb(255, 255, 255);
+  --color-letra-titulo: #fff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: linear-gradient(45deg, #111827, #111827);
+  color: white;
+  /* background-color: var(--color-fondo); */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.text-color-inmofinanzas {
+  color: var(--color-letra-titulo);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.bg-titulo-inmofinanzas {
+  background: linear-gradient(to right, var(--color-inicial-inmofinanza), var(--color-final-inmofinanza));
+}
+
+.bg-boton-inmofinanzas {
+  background: linear-gradient(to right, var(--color-inicial-inmofinanza), var(--color-final-inmofinanza));
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.card-img-size {
+  height: 250px;
+  max-height: 250px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.color-fondo-seccion {
+  background-color: #f3f4f6b5;
+}
+
+.card-body {
+  overflow: hidden; /* Oculta el contenido que sobresale */
+}
+
+.card-title,
+.card-text {
+  overflow: hidden; /* Oculta el texto que sobresale */
+  white-space: nowrap; /* Evita que el texto se desborde a una nueva línea */
+  text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al texto que se recorta */
 }

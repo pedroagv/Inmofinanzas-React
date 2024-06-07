@@ -1,0 +1,12 @@
+.navbar-logo {
+    width: 3.8rem;
+    /* ajusta el valor según el tamaño deseado */
+    height: auto;
+    /* permite que la altura se ajuste automáticamente */
+}
+
+
+
+.navbar-inmofinanza {
+    background: linear-gradient(to right, var(--color-inicial-inmofinanza), var(--color-final-inmofinanza));
+}

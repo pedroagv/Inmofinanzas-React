@@ -1,0 +1,7 @@
+.carousel-item img {
+    max-height: 600px;
+}
+
+.carousel-caption {
+    background-color: #81818196;
+}
