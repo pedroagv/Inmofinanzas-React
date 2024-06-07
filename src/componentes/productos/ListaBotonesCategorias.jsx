@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { apiUrl } from '../../config';
 
 function ListaBotonesCategorias() {
     const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
-        fetch('/categorias')
+        fetch(`${apiUrl}/categorias`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

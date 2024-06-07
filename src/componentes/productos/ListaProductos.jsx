@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ListaBotonesCategorias from './ListaBotonesCategorias';
+import { apiUrl } from '../../config';
+// import ListaBotonesCategorias from './ListaBotonesCategorias';
 
 const ListaProductos = () => {
     const [productos, setProductos] = useState([]);
 
+    console.log(apiUrl);
     useEffect(() => {
-        fetch('/productos')
+        fetch(`${apiUrl}/productos`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

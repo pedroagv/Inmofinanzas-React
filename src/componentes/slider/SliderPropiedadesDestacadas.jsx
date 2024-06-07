@@ -1,11 +1,12 @@
 import { React, useEffect, useState } from 'react';
 import '../slider/SliderPropiedadesDestacadas.css';
+import { apiUrl } from '../../config';
 
 function SliderPropiedadesDestacadas() {
     const [carouselItems, setCarouselItems] = useState([]);
 
     useEffect(() => {
-        fetch('/productos')
+        fetch(`${apiUrl}/productos`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

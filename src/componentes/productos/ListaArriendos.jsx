@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { apiUrl } from '../../config';
+
+
 
 const ListaArriendos = () => {
     const [productos, setProductos] = useState([]);
 
     useEffect(() => {
-        fetch('/productos')
+        fetch(`${apiUrl}/productos`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
