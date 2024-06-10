@@ -38,11 +38,8 @@ const RedSocial = () => {
     return (
         <div className="container p-3 contenedor-red-social">
             <div className="row">
-                <div className="col-md-12 text-center ">
-                    <img src="/imagenes/InmoFinanzas.png" className="img_cabeza" alt="logo" />
-                    <h4 className="text-white mb-2 mt-1 p-2 h4-mensaje">
-                        <i className="far fa-hand-peace"></i> BIENVENIDO A NUESTRAS REDES SOCIALES
-                    </h4>
+                <div className="col-md-12 ">
+                    <h3 className="font-bold my-4 border-bottom border-2">Conoceno en nuestras redes sociales</h3>
                 </div>
 
                 {socialMediaButtons.map((button, index) => (

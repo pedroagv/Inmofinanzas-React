@@ -51,7 +51,7 @@ const ListaArriendos = () => {
                                 <p className="card-text">{producto.descripcion}</p>
                                 <div className='d-flex justify-content-between'>
                                     <p className='font-bold text-primary'>${producto.precio}/ Mensual</p>
-                                    <button className="btn btn-primary" >Ver Detalles</button>
+                                    <button className="btn btn-dark" >Ver Detalles</button>
                                 </div>
                             </div>
                         </div>

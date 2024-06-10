@@ -52,8 +52,8 @@ const ListaProductos = () => {
                                 <h5 className="card-title">{producto.nombre}</h5>
                                 <p className="card-text">{producto.descripcion}</p>
                                 <div className='d-flex justify-content-between'>
-                                    <button className="btn btn-primary" >Ver Detalles</button>
-                                    <button className="btn btn-success" >Contactenos</button>
+                                    <button className="btn btn-dark" >Ver Detalles</button>
+                                    <button className="btn btn-outline-dark" >Contactenos</button>
                                 </div>
                             </div>
                         </div>

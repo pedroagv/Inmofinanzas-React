@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Morganite-Medium';
-    src: url('../../../public/font/Morganite-Medium.ttf') format('truetype');
+    /* font-family: 'Morganite-Medium'; */
+    /* src: url('../../../public/font/Morganite-Medium.ttf') format('truetype'); */
 }
 
 
@@ -12,13 +12,13 @@
 }
 
 .contenedor-red-social {
-    background: linear-gradient(180deg, #ffffff 0%, #ffffff 15%, #44b3e5 34%, #44b3e5 50%, #06538f 75%, #25295c 100%);
+    /* background: linear-gradient(180deg, #ffffff 0%, #ffffff 15%, #44b3e5 34%, #44b3e5 50%, #06538f 75%, #25295c 100%); */
     font-family: 'Morganite-Medium', sans-serif;
 }
 
 
 .icon {
-    max-width: 2rem;
+    max-width: 1.5rem;
     display: flex;
     align-items: center;
 }
@@ -81,7 +81,7 @@
 
 .btn-red-social svg {
     fill: white;
-    width: 2.5rem;
+    width: 2rem;
 }
 
 .btn-red-social:active {
@@ -90,9 +90,4 @@
 
 .img_cabeza {
     width: 9rem;
-}
-
-.h4-mensaje {
-    background-color: #103d74;
-    border-radius: 20px;
 }

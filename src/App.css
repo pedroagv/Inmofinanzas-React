@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Morganite-Medium';
-  src: url('../public/font/Morganite-Medium.ttf') format('truetype');
+  /* font-family: 'Morganite-Medium'; */
+  /* src: url('../public/font/Morganite-Medium.ttf') format('truetype'); */
 }
 
 :root {
@@ -13,7 +13,7 @@
 body {
   background: linear-gradient(45deg, #111827, #111827);
   color: white;
-  font-family: 'Morganite-Medium', sans-serif;
+  /* font-family: 'Morganite-Medium', sans-serif; */
   font-size: 14px;
   /* background-color: var(--color-fondo); */
 }
@@ -41,12 +41,16 @@ body {
 }
 
 .card-body {
-  overflow: hidden; /* Oculta el contenido que sobresale */
+  overflow: hidden;
+  /* Oculta el contenido que sobresale */
 }
 
 .card-title,
 .card-text {
-  overflow: hidden; /* Oculta el texto que sobresale */
-  white-space: nowrap; /* Evita que el texto se desborde a una nueva línea */
-  text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al texto que se recorta */
+  overflow: hidden;
+  /* Oculta el texto que sobresale */
+  white-space: nowrap;
+  /* Evita que el texto se desborde a una nueva línea */
+  text-overflow: ellipsis;
+  /* Agrega puntos suspensivos (...) al texto que se recorta */
 }

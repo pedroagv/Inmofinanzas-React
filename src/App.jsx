@@ -12,7 +12,7 @@ function App() {
         <Cabecera />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/redessociales" element={<RedSocial />} />
+          <Route path="/RedesSociales" element={<RedSocial />} />
         </Routes>
         <Footer />
       </div>
