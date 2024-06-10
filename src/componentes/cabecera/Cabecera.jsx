@@ -15,7 +15,6 @@ function Cabecera() {
             })
             .then(data => {
                 setCategorias(data);
-                console.log(categorias)
             })
             .catch(error => console.error('Error fetching categories:', error));
     }, []);
@@ -33,7 +32,7 @@ function Cabecera() {
                             categorias && categorias.map(item => (
                                 <a id={item.id} className="nav-link" href={item.link}>{item.categoria}</a>
                             ))
-                        } 
+                        }
                     </div>
                 </div>
             </div>

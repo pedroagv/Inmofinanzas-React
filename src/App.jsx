@@ -1,23 +1,22 @@
 import './App.css';
-import Brokers from './componentes/Empresa/Brokers';
-import Nosotros from './componentes/Empresa/Nosotros';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './componentes/PiePagina/footer';
 import Cabecera from './componentes/cabecera/Cabecera';
-import ListaArriendos from './componentes/productos/ListaArriendos';
-import ListaProductos from './componentes/productos/ListaProductos';
-import SliderPropiedadesDestacadas from './componentes/slider/SliderPropiedadesDestacadas';
+import RedSocial from './componentes/redes-sociales/RedSocial';
+import Home from './componentes/Home/Home';
 
 function App() {
   return (
-    <div className="App">
-      <Cabecera />
-      <SliderPropiedadesDestacadas />
-      <ListaProductos />
-      <ListaArriendos />
-      <Nosotros />
-      <Brokers />
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Cabecera />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/redessociales" element={<RedSocial />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

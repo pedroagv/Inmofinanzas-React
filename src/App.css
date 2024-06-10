@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Morganite-Medium';
+  src: url('../public/font/Morganite-Medium.ttf') format('truetype');
+}
+
 :root {
   --color-inicial-inmofinanza: #54bcec;
   --color-final-inmofinanza: #20234b;
