@@ -33,7 +33,7 @@ function Cabecera() {
                             categorias && categorias.map(item => (
                                 <a id={item.id} className="nav-link" href={item.link}>{item.categoria}</a>
                             ))
-                        }
+                        } 
                     </div>
                 </div>
             </div>
