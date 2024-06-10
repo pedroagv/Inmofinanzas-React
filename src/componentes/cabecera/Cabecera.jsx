@@ -1,21 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { apiUrl } from '../../config';
 import '../cabecera/Cabecera.css';
 
 function Cabecera() {
+    const [categorias, setCategorias] = useState([]);
+
+    useEffect(() => {
+        fetch(`${apiUrl}/categorias`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setCategorias(data);
+                console.log(categorias)
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+    }, []);
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
                 <img src="/imagenes/InmoFinanzas.png" className='navbar-logo' alt="InmoFinanzas Logo" />
-                <a class="navbar-brand" href="/">InmoFinanzasAGV</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <a className="navbar-brand" href="/">InmoFinanzasAGV</a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="/">Ventas</a>
-                        <a class="nav-link" href="/">Arriendos</a>
-                        <a class="nav-link" href="/">Permutas</a>
-                        <a class="nav-link" href="/">Carga documentos</a>
+                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div className="navbar-nav">
+                        {
+                            categorias && categorias.map(item => (
+                                <a id={item.id} className="nav-link" href={item.link}>{item.categoria}</a>
+                            ))
+                        }
                     </div>
                 </div>
             </div>
