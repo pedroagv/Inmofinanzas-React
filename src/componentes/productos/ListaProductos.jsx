@@ -24,7 +24,7 @@ const ListaProductos = () => {
     return (
         <div className="container color-fondo-seccion p-5 mb-5">
             {/* <h3 className="my-4 p-3 text-color-inmofinanzas bg-titulo-inmofinanzas text-center">Nuestros productos inmobiliarios</h3> */}
-            <h3 className="font-bold text-dark my-4 border-bottom border-2">Nuestros productos inmobiliarios</h3>
+            <h3 className="font-bold text-dark my-4 border-bottom border-2 text-white">Nuestros productos inmobiliarios</h3>
             {/* <ListaBotonesCategorias /> */}
             <div className="row">
                 {productos && productos.map(producto => (

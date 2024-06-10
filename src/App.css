@@ -1,6 +1,6 @@
 @font-face {
-  /* font-family: 'Morganite-Medium'; */
-  /* src: url('../public/font/Morganite-Medium.ttf') format('truetype'); */
+   font-family: 'Morganite-Medium';
+  src: url('../public/font/Morganite-Medium.ttf') format('truetype');
 }
 
 :root {
@@ -17,6 +17,13 @@ body {
   font-size: 14px;
   /* background-color: var(--color-fondo); */
 }
+
+.color-navbar-brand {
+  background: linear-gradient(180deg, #000000 0%, #000000 15%, #44b3e5 34%, #44b3e5 50%, #06538f 75%, #25295c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 .text-color-inmofinanzas {
   color: var(--color-letra-titulo);
