@@ -1,17 +1,17 @@
 @font-face {
     font-family: 'Morganite-Medium';
-    src: url('../../../public/font/Morganite-Medium.ttf') format('truetype');    
+    src: url('../../../public/font/Morganite-Medium.ttf') format('truetype');
 }
 
 
 /* Estilo para dispositivos móviles */
 @media only screen and (max-width: 767px) {
-    .img_cabeza{
+    .img_cabeza {
         margin-top: -10%;
     }
 }
 
-body {
+.contenedor-red-social {
     background: linear-gradient(180deg, #ffffff 0%, #ffffff 15%, #44b3e5 34%, #44b3e5 50%, #06538f 75%, #25295c 100%);
     font-family: 'Morganite-Medium', sans-serif;
 }
@@ -92,7 +92,7 @@ body {
     width: 9rem;
 }
 
-.h4-mensaje{
+.h4-mensaje {
     background-color: #103d74;
     border-radius: 20px;
 }
