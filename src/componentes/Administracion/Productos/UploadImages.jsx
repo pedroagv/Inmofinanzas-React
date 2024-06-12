@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { apiUrl } from '../../../config';
 
-function UploadImages({ onImagesUpload }) {
+function UploadImages({ onImagesUpload ,folder }) {
+
     const [files, setFiles] = useState([]);
+    
     const [uploadedImageUrls, setUploadedImageUrls] = useState([]);
 
     const handleFileChange = (event) => {
@@ -16,6 +18,7 @@ function UploadImages({ onImagesUpload }) {
         for (let i = 0; i < files.length; i++) {
             formData.append('files', files[i]);
         }
+        formData.append('folder', folder); // Agregar el nuevo identificador como parte de la solicitud
 
         try {
             const response = await axios.post(`${apiUrl}/upload`, formData, {
@@ -23,18 +26,20 @@ function UploadImages({ onImagesUpload }) {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            debugger;
             console.log('Files uploaded successfully:', response.data);
             onImagesUpload(response.data);
-            setUploadedImageUrls(response.data.map(image => console.log(image.url))); // Store the URLs of the uploaded images
+            setUploadedImageUrls(response.data.map(image => image.url)); // Store the URLs of the uploaded images
         } catch (error) {
             console.error('Error uploading files:', error);
         }
     };
 
+    
+
     return (
         <div className='p-3'>
             <form onSubmit={handleSubmit}>
+                <p>folder: {folder}</p>
                 <input type="file" className='btn btn-outline-success' multiple onChange={handleFileChange} />
                 <button className='btn btn-outline-success' type="submit">Cargar Imágenes del producto</button>
             </form>
