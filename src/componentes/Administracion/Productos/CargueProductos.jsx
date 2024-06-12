@@ -1,11 +1,11 @@
 import React from 'react'
-import UploadImages from './UploadImages'
+import DynamicForm from './DynamicForm'
+import AdminListaProductos from './AdminListaProductos'
 
 function CargueProductos() {
   return (
     <div className='container p-3'>
-        <h3>Cargue inmuebles inmofinanzas </h3>
-        <UploadImages />
+        <DynamicForm />       
     </div>
   )
 }

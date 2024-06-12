@@ -30,10 +30,10 @@ function UploadImages() {
     };
 
     return (
-        <div>
+        <div className='p-3'>
             <form onSubmit={handleSubmit}>
-                <input type="file" multiple onChange={handleFileChange} />
-                <button type="submit">Upload</button>
+                <input type="file" className='btn btn-outline-success' multiple onChange={handleFileChange} />
+                <button className='btn btn-outline-success' type="submit">Cargar Imagenes del producto</button>
             </form>
         </div>
     );
