@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { apiUrl } from '../../../config';
-import UploadImages from './UploadImages';
+// import UploadImages from './UploadImages';
 
 function DynamicForm() {
 
@@ -25,9 +25,10 @@ function DynamicForm() {
     precio: '350000000',
     direccion: 'Calle 123, Playa Bonita, Ciudad Mar',
     area: '200',
-    destacado: 'Sí',
-    carpeta:folder,
-    imagen:'', // Added field for images
+    destacado: true,
+    carpeta: folder,
+    Fecha: new Date().toLocaleString(),
+    imagen: '', // Added field for images
   };
 
 
@@ -44,7 +45,7 @@ function DynamicForm() {
   function generateNewId() {
     // Generar un nuevo identificador único utilizando el timestamp actual
     return Date.now().toString(36) + Math.random().toString(36).substring(2);
-};
+  };
 
   const handleAddField = (index) => {
     const fieldName = newField.trim();
@@ -68,11 +69,11 @@ function DynamicForm() {
     setInputList(list);
   };
 
-  const handleImagesUpload = (uploadedImages) => {
-    const list = [...inputList];
-    list[0].fields.imagenes = uploadedImages; // Update the images field with the uploaded images
-    setInputList(list);
-  };
+  // const handleImagesUpload = (uploadedImages) => {
+  //   const list = [...inputList];
+  //   list[0].fields.imagenes = uploadedImages; // Update the images field with the uploaded images
+  //   setInputList(list);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -124,7 +125,7 @@ function DynamicForm() {
         </div>
       ))}
 
-      <UploadImages onImagesUpload={handleImagesUpload} folder={folder} />
+      {/* <UploadImages onImagesUpload={handleImagesUpload} folder={folder} /> */}
 
       <button className='btn btn-dark' type="submit">GUARDAR PRODUCTO</button>
       <hr />
@@ -136,7 +137,7 @@ function DynamicForm() {
         <div className='col-md-12'>
           <input
             type="text"
-            className='form form-control'
+            className='form form-control mb-2'
             placeholder='Agregue un nuevos campos adicionales para el producto: ejemplo baños, habitaciones, parqueadero, jardin etc'
             value={newField}
             onChange={(e) => setNewField(e.target.value)}

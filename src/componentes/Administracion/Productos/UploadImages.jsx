@@ -45,7 +45,7 @@ function UploadImages({ onImagesUpload ,folder }) {
             </form>
             <div>
                 {uploadedImageUrls.map((imageUrl, index) => (
-                    <img key={index} src={imageUrl} alt={`Image ${index}`} style={{ width: '100px', height: '100px', margin: '5px' }} />
+                    <img key={index} src={imageUrl} style={{ width: '100px', height: '100px', margin: '5px' }} />
                 ))}
             </div>
         </div>

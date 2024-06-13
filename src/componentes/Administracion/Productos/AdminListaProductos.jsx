@@ -19,39 +19,61 @@ function AdminListaProductos() {
     }, []);
 
     const handleEdit = (id) => {
-        // Lógica para manejar la edición del producto
         console.log(`Editar producto con id: ${id}`);
+        // Lógica para manejar la edición del producto
     };
 
     const handleDelete = async (id) => {
         try {
-          // Llamada a la API para eliminar el producto
-          const response = await fetch(`${apiUrl}/productos/${id}`, {
-            method: 'DELETE',
-          });
-      
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-      
-          // Actualizar la lista de productos después de la eliminación
-          setProductos(prevProductos => prevProductos.filter(producto => producto.id !== id));
-          alert('Producto eliminado con éxito');
+            const response = await fetch(`${apiUrl}/productos/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            setProductos(prevProductos => prevProductos.filter(producto => producto.id !== id));
+            alert('Producto eliminado con éxito');
         } catch (error) {
-          console.error('Error deleting product:', error);
-          alert('Error eliminando el producto');
+            console.error('Error deleting product:', error);
+            alert('Error eliminando el producto');
         }
-      };
-      
+    };
+
+    const handleUpload = async (id) => {
+        try {
+            const formData = new FormData();
+            const files = document.querySelector(`#file-upload-${id}`).files;
+            for (let i = 0; i < files.length; i++) {
+                formData.append('files', files[i]);
+            }
+
+            const response = await fetch(`${apiUrl}/upload?folder=${id}`, {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            alert('Imágenes cargadas con éxito');
+        } catch (error) {
+            console.error('Error uploading images:', error);
+            alert('Error cargando las imágenes');
+        }
+    };
 
     return (
         <div className='container'>
-            <h3 className="font-bold text-dark my-4 border-bottom border-2 text-white">Listado de inmuebles o productos en la BD</h3>
+            <h3 className="font-bold text-dark my-4 border-bottom border-2 text-white">Listado de productos en la BD</h3>
             <table className='table table-striped'>
-                <thead class="table-primary">
+                <thead className="table-primary">
                     <tr>
-                        <th>id</th>
+                        <th>ID</th>
                         <th>Nombre producto</th>
+                        <th>Imágenes</th>
                         <th>Ver</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
@@ -62,6 +84,10 @@ function AdminListaProductos() {
                         <tr key={producto.id}>
                             <td>{producto.id}</td>
                             <td>{producto.nombre}</td>
+                            <td>
+                                <input type="file" id={`file-upload-${producto.id}`} multiple />
+                                <button className='btn btn-outline-success' onClick={() => handleUpload(producto.id)}>Cargar</button>
+                            </td>
                             <td>
                                 <button className='btn btn-outline-primary' onClick={() => handleEdit(producto.id)}>Ver detalle</button>
                             </td>
