@@ -28,7 +28,7 @@ function DynamicForm() {
     destacado: true,
     carpeta: folder,
     Fecha: new Date().toLocaleString(),
-    imagen: '', // Added field for images
+    imagenPrincipal: '',
   };
 
 
