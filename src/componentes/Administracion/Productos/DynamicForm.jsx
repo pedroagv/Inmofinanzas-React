@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { apiUrl } from '../../../config';
-// import UploadImages from './UploadImages';
 
 function DynamicForm() {
 
@@ -125,9 +124,7 @@ function DynamicForm() {
         </div>
       ))}
 
-      {/* <UploadImages onImagesUpload={handleImagesUpload} folder={folder} /> */}
-
-      <button className='btn btn-dark' type="submit">GUARDAR PRODUCTO</button>
+      <button className='btn btn-outline-success text-white' type="submit">Guardar nuevo producto</button>
       <hr />
 
       <div className='row'>
