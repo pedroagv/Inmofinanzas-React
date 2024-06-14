@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import axios from 'axios';
 import { apiUrl } from '../../../config';
+import AdminImagenPorProductoModal from '../Imagenes/AdminImagenPorProductoModal';
 
 function AdminListaProductos() {
     const [productos, setProductos] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentFolder, setCurrentFolder] = useState(null);
+    const [images, setImages] = useState([]);
+    const [favorite, setFavorite] = useState('');
 
     useEffect(() => {
         fetch(`${apiUrl}/productos`)
@@ -59,9 +65,53 @@ function AdminListaProductos() {
             }
 
             alert('Imágenes cargadas con éxito');
+            setCurrentFolder(id);
+            setIsModalOpen(true);
         } catch (error) {
             console.error('Error uploading images:', error);
             alert('Error cargando las imágenes');
+        }
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setCurrentFolder(null);
+        setImages([]); // Limpiar imágenes cuando se cierra el modal
+        setFavorite(''); // Limpiar favorito cuando se cierra el modal
+    };
+
+    const fetchImages = useCallback(async () => {
+        if (currentFolder) {
+            try {
+                const response = await axios.get(`${apiUrl}/images/${currentFolder}`);
+                setImages(response.data.imagenes);
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+        }
+    }, [currentFolder]);
+
+    useEffect(() => {
+        if (isModalOpen) {
+            fetchImages();
+        }
+    }, [isModalOpen, fetchImages]);
+
+    const deleteImage = async (filename) => {
+        try {
+            await axios.delete(`${apiUrl}/images/${currentFolder}/${filename}`);
+            fetchImages();
+        } catch (error) {
+            console.error('Error deleting image:', error);
+        }
+    };
+
+    const markAsFavorite = async (filename) => {
+        try {
+            await axios.put(`${apiUrl}/images/${currentFolder}`, { imagen_portada: filename });
+            setFavorite(filename);
+        } catch (error) {
+            console.error('Error marking as favorite:', error);
         }
     };
 
@@ -101,6 +151,17 @@ function AdminListaProductos() {
                     ))}
                 </tbody>
             </table>
+
+            {/* Modal */}
+            <AdminImagenPorProductoModal
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                folder={currentFolder} // Asegúrate de pasar la carpeta correcta
+                images={images} // Pasa las imágenes al modal
+                favorite={favorite} // Pasa la imagen favorita al modal
+                onDeleteImage={deleteImage} // Pasa la función para eliminar imágenes
+                onMarkAsFavorite={markAsFavorite} // Pasa la función para marcar como favorita
+            />
         </div>
     );
 }

@@ -1,5 +1,5 @@
 @font-face {
-   font-family: 'Morganite-Medium';
+  font-family: 'Morganite-Medium';
   src: url('../public/font/Morganite-Medium.ttf') format('truetype');
 }
 
@@ -42,6 +42,11 @@ body {
   height: 250px;
   max-height: 250px;
 }
+
+/* .card-modal-image {
+  height: 150px;
+  max-height: 150px;
+} */
 
 .color-fondo-seccion {
   background-color: #f3f4f6b5;
