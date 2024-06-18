@@ -19,19 +19,24 @@ function SliderPropiedadesDestacadas() {
             .catch(error => console.error('Error fetching products:', error));
     }, []);
 
+    const handleClick = (productId) => {
+        // Navigate programmatically to the detail page
+        window.location.href = `/Detalle/${productId}`;
+    };
+
     return (
         <div className='container mb-5'>
             {/* <h3 className="font-bold my-4 p-3 text-color-inmofinanzas bg-titulo-inmofinanzas text-center">Propiedades destacadas</h3> */}
             <h3 className="font-bold my-4 border-bottom border-2">Propiedades destacadas</h3>
             <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-indicators">
-                    {carouselItems.filter(filtro => filtro.destacado === true).map((product, index) => (
+                    {carouselItems.filter(filtro => filtro.destacado === 'true').map((product, index) => (
                         <button key={index} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={index} className={index === 0 ? "active" : ""} aria-current={index === 0 ? "true" : ""} aria-label={`Slide ${index + 1}`}></button>
                     ))}
                 </div>
                 <div className="carousel-inner">
-                    {carouselItems.filter(filtro => filtro.destacado === true).map((product, index) => (
-                        <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                    {carouselItems.filter(filtro => filtro.destacado === 'true').map((product, index) => (
+                        <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`} onClick={() => handleClick(product.id)} >
                             <img src={product.imagenes[0].src} className="d-block w-100" alt={product.imagenes[0].alt} />
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>{product.nombre}</h5>

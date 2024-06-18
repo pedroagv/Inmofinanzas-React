@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { apiUrl } from '../../config';
+import { Link } from 'react-router-dom';
 // import ListaBotonesCategorias from './ListaBotonesCategorias';
 
 const ListaProductos = () => {
@@ -52,7 +53,9 @@ const ListaProductos = () => {
                                 <h5 className="card-title">{producto.nombre}</h5>
                                 <p className="card-text">{producto.descripcion}</p>
                                 <div className='d-flex justify-content-between'>
-                                    <button className="btn btn-dark" >Ver Detalles</button>
+                                    <Link to={`/Detalle/${producto.id}`} className="btn btn-dark">
+                                        Ver Detalles
+                                    </Link>
                                     <button className="btn btn-outline-dark" >Contactenos</button>
                                 </div>
                             </div>
