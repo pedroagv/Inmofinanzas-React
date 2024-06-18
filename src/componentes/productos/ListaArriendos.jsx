@@ -21,7 +21,7 @@ const ListaArriendos = () => {
     }, []);
 
     return (
-        <div className="container color-fondo-seccion p-5" >
+        <div className="container color-fondo-seccion p-2 p-md-5" >
             {/* <h3 className='mb-3'>Arriendos</h3> */}
             <h3 className="font-bold text-dark my-4 border-bottom border-2 text-white">Arriendos</h3>
             <div className="row">

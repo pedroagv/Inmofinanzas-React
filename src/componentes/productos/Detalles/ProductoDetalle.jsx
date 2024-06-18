@@ -34,8 +34,9 @@ const ProductoDetalle = ({ productoData }) => {
                         {Object.entries(productoData).map(([key, valor]) => (
                             (key !== 'imagenes' && key !== 'descripcion' && key !== 'nombre'
                                 && key !== 'id' && key !== 'Fecha' && key !== 'mapa' && key !== 'direccion'
+                                && key !== 'carpeta'
                             ) &&
-                            <div className='badge bg-primary p-3 m-2' key={key}>{key}: {valor}</div>
+                            <div className='fs-6 badge bg-primary p-2 m-2' key={key}>{key}: {valor}</div>
                         ))}
                     </div>
                 </div>

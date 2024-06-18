@@ -23,13 +23,13 @@ const ListaProductos = () => {
     }, []);
 
     return (
-        <div className="container color-fondo-seccion p-5 mb-5">
+        <div className="container color-fondo-seccion p-2 p-md-5 mb-5">
             {/* <h3 className="my-4 p-3 text-color-inmofinanzas bg-titulo-inmofinanzas text-center">Nuestros productos inmobiliarios</h3> */}
             <h3 className="font-bold text-dark my-4 border-bottom border-2 text-white">Nuestros productos inmobiliarios</h3>
             {/* <ListaBotonesCategorias /> */}
             <div className="row">
                 {productos && productos.map(producto => (
-                    <div key={producto.id} className="col-sm-3 col-md-4">
+                    <div key={producto.id} className="col-12 col-md-6 col-lg-4">
                         <div className="card mb-4">
                             <div id={`carouselExampleIndicators${producto.id}`} className="carousel slide" data-bs-ride="carousel">
                                 <div className="carousel-inner">
