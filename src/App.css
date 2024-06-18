@@ -66,3 +66,7 @@ body {
   text-overflow: ellipsis;
   /* Agrega puntos suspensivos (...) al texto que se recorta */
 }
+
+.labelAdmin{
+  font-size: 0.7rem;
+}

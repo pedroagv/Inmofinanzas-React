@@ -44,7 +44,7 @@ function AdminImagenPorProductoModal({ isOpen, onClose, folder }) {
         return (
             <div className="row">
                 {images.map((image, index) => (
-                    <div key={index} className="col-md-4 mb-3">
+                    <div key={index} className="col-12 col-md-4 mb-3">
                         <div className="card card-modal-image">
                             <img src={image.src} alt={`Imagen ${index}`} className="card-img-top img-thumbnail" />
                             <div className="card-body">

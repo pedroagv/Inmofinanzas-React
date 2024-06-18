@@ -7,27 +7,27 @@ function DynamicForm() {
 
 
   const CamposIniciales = {
-    nombre: 'Casa en la playa',
-    habitaciones: '3',
-    piso: '2',
-    estudio: 'Sí',
-    patio: 'Sí',
-    estrato: '5',
-    baños: '2',
-    deposito: 'Sí',
-    balcon: 'Sí',
-    chimenea: 'No',
-    ascensor: 'No',
-    parqueadero: '2',
-    descripcion: 'Hermosa casa con vista al mar, ideal para vacaciones en familia.',
-    categoria: 'Casa',
-    precio: '350000000',
-    direccion: 'Calle 123, Playa Bonita, Ciudad Mar',
-    area: '200',
-    destacado: true,
+    nombre: '',
+    habitaciones: '',
+    piso: '',
+    estudio: '',
+    patio: '',
+    estrato: '',
+    baños: '',
+    deposito: '',
+    balcon: '',
+    chimenea: '',
+    ascensor: '',
+    parqueadero: '',
+    descripcion: '',
+    categoria: 'Arriendo, Ventas, Permurtas',
+    precio: '',
+    direccion: '',
+    area: '',
+    destacado: null,
     carpeta: folder,
     Fecha: new Date().toLocaleString(),
-    imagenPrincipal: '',
+    // imagenPrincipal: '',
   };
 
 
@@ -107,8 +107,9 @@ function DynamicForm() {
       {inputList.map((product, i) => (
         <div key={i} className='row'>
           {Object.keys(product.fields).map((fieldName, j) => (
-            <div key={j} className='col-3'>
+            <div key={j} className='col-12 col-sm-6 col-md-6'>
               <div className="input-group mb-3">
+                <span class="input-group-text labelAdmin" id="label-for-field-0-0">{fieldName}:</span>
                 <input
                   id={`field-${i}-${j}`}
                   className='form-control'

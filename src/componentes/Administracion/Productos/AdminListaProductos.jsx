@@ -118,49 +118,37 @@ function AdminListaProductos() {
     return (
         <div className='container'>
             <h3 className="font-bold text-dark my-4 border-bottom border-2 text-white">Listado de productos en la BD</h3>
-            <table className='table table-striped'>
-                <thead className="table-primary">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre producto</th>
-                        <th>Imágenes</th>
-                        <th>Ver</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {productos && productos.map(producto => (
-                        <tr key={producto.id}>
-                            <td>{producto.id}</td>
-                            <td>{producto.nombre}</td>
-                            <td>
-                                <input type="file" id={`file-upload-${producto.id}`} multiple />
-                                <button className='btn btn-outline-success' onClick={() => handleUpload(producto.id)}>Cargar</button>
-                            </td>
-                            <td>
-                                <button className='btn btn-outline-primary' onClick={() => handleEdit(producto.id)}>Ver detalle</button>
-                            </td>
-                            <td>
-                                <button className='btn btn-outline-info' onClick={() => handleEdit(producto.id)}>Editar</button>
-                            </td>
-                            <td>
-                                <button className='btn btn-outline-danger' onClick={() => handleDelete(producto.id)}>Eliminar</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className='row row-cols-1 row-cols-md-4 g-4'>
+                {productos && productos.map(producto => (
+                    <div key={producto.id} className='col'>
+                        <div className='card h-100'>
+                            <div className='card-body'>
+                                <h5 className='card-title'>{producto.nombre}</h5>
+                                <p className='card-text'>ID: {producto.id}</p>
+                                <div className='mb-3'>
+                                    <input type="file" id={`file-upload-${producto.id}`} multiple className="form-control" />
+                                    <button className='btn btn-outline-success mt-2 w-100' onClick={() => handleUpload(producto.id)}>Cargar Imagenes</button>
+                                </div>
+                                <div className='d-grid gap-2'>
+                                    <button className='btn btn-outline-primary' onClick={() => handleEdit(producto.id)}>Ver detalle</button>
+                                    <button className='btn btn-outline-info' onClick={() => handleEdit(producto.id)}>Editar</button>
+                                    <button className='btn btn-outline-danger' onClick={() => handleDelete(producto.id)}>Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
 
             {/* Modal */}
             <AdminImagenPorProductoModal
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
-                folder={currentFolder} // Asegúrate de pasar la carpeta correcta
-                images={images} // Pasa las imágenes al modal
-                favorite={favorite} // Pasa la imagen favorita al modal
-                onDeleteImage={deleteImage} // Pasa la función para eliminar imágenes
-                onMarkAsFavorite={markAsFavorite} // Pasa la función para marcar como favorita
+                folder={currentFolder}
+                images={images}
+                favorite={favorite}
+                onDeleteImage={deleteImage}
+                onMarkAsFavorite={markAsFavorite}
             />
         </div>
     );
