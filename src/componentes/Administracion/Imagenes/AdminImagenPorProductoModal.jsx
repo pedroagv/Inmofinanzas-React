@@ -3,6 +3,7 @@ import axios from 'axios';
 import { apiUrl } from '../../../config';
 import classNames from 'classnames';
 
+
 function AdminImagenPorProductoModal({ isOpen, onClose, folder }) {
     const [images, setImages] = useState([]);
     const [favorite, setFavorite] = useState('');
@@ -45,11 +46,11 @@ function AdminImagenPorProductoModal({ isOpen, onClose, folder }) {
             <div className="row">
                 {images.map((image, index) => (
                     <div key={index} className="col-12 col-md-4 mb-3">
-                        <div className="card card-modal-image">
-                            <img src={image.src} alt={`Imagen ${index}`} className="card-img-top img-thumbnail" />
+                        <div className="card card-modal-image-admin">
+                            <img src={image.src} alt={`Imagen ${index}`} className="card-img-top" />
                             <div className="card-body">
-                                <button className="btn btn-danger mx-2" onClick={() => deleteImage(image.src.split('/').pop())}>Eliminar</button>
-                                <button className="btn btn-primary" onClick={() => markAsFavorite(image.src)}>Portada</button>
+                                <button className="btn btn-sm btn-danger mx-2" onClick={() => deleteImage(image.src.split('/').pop())}>Eliminar</button>
+                                <button className="btn btn-sm btn-primary" onClick={() => markAsFavorite(image.src)}>Portada</button>
                             </div>
                         </div>
                     </div>
@@ -61,14 +62,14 @@ function AdminImagenPorProductoModal({ isOpen, onClose, folder }) {
     return (
         <div className={classNames('modal', { 'fade show': isOpen, 'd-block': isOpen })} tabIndex="-1" style={{ display: isOpen ? 'block' : 'none' }}>
             <div className="modal-dialog modal-dialog-centered modal-xl">
-                <div className="modal-content bg-dark">
+                <div className="modal-content bg-primary">
                     <div className="modal-header">
-                        <h5 className="modal-title">Administrar Imágenes</h5>
+                        <h5 className="modal-title">Administrar Imágenes - {folder}</h5>
                         <button type="button" className="btn-close" onClick={onClose}></button>
                     </div>
                     <div className="modal-body">
+                        {favorite && <div className='col-12 col-md-4 mb-3'><span>Imagen portada:</span> <img src={favorite} alt="Favorita" className="img-thumbnail" /></div>}
                         {renderImages()}
-                        {favorite && <div><span>Imagen portada:</span> <img src={favorite} alt="Favorita" className="img-thumbnail" /></div>}
                     </div>
                 </div>
             </div>

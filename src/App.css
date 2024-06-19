@@ -43,10 +43,10 @@ body {
   max-height: 250px;
 }
 
-/* .card-modal-image {
+.card-modal-image-admin img {
   height: 150px;
-  max-height: 150px;
-} */
+  /* max-height: 100px; */
+}
 
 .color-fondo-seccion {
   background-color: #f3f4f6b5;
@@ -67,6 +67,6 @@ body {
   /* Agrega puntos suspensivos (...) al texto que se recorta */
 }
 
-.labelAdmin{
+.labelAdmin {
   font-size: 0.7rem;
 }

@@ -29,6 +29,11 @@ function AdminListaProductos() {
         // Lógica para manejar la edición del producto
     };
 
+    const handleVerImagenes = (id) => {
+        setCurrentFolder(id);
+        setIsModalOpen(true);
+    };
+
     const handleDelete = async (id) => {
         try {
             const response = await fetch(`${apiUrl}/productos/${id}`, {
@@ -130,7 +135,7 @@ function AdminListaProductos() {
                                     <button className='btn btn-outline-success mt-2 w-100' onClick={() => handleUpload(producto.id)}>Cargar Imagenes</button>
                                 </div>
                                 <div className='d-grid gap-2'>
-                                    <button className='btn btn-outline-primary' onClick={() => handleEdit(producto.id)}>Ver detalle</button>
+                                    <button className='btn btn-outline-primary' onClick={() => handleVerImagenes(producto.id)}>Ver imagenes</button>
                                     <button className='btn btn-outline-info' onClick={() => handleEdit(producto.id)}>Editar</button>
                                     <button className='btn btn-outline-danger' onClick={() => handleDelete(producto.id)}>Eliminar</button>
                                 </div>
