@@ -26,6 +26,7 @@ function AdminImagenPorProductoModal({ isOpen, onClose, folder }) {
     const deleteImage = async (filename) => {
         try {
             await axios.delete(`${apiUrl}/images/${folder}/${filename}`);
+            alert('Accion ejecutada!');
             fetchImages();
         } catch (error) {
             console.error('Error deleting image:', error);
@@ -34,7 +35,7 @@ function AdminImagenPorProductoModal({ isOpen, onClose, folder }) {
 
     const markAsFavorite = async (filename) => {
         try {
-            await axios.put(`${apiUrl}/images/${folder}`, { favorite_image: filename });
+            await axios.put(`${apiUrl}/images/${folder}`, { imagen_portada: filename });
             setFavorite(filename);
         } catch (error) {
             console.error('Error marking as favorite:', error);
@@ -62,7 +63,7 @@ function AdminImagenPorProductoModal({ isOpen, onClose, folder }) {
     return (
         <div className={classNames('modal', { 'fade show': isOpen, 'd-block': isOpen })} tabIndex="-1" style={{ display: isOpen ? 'block' : 'none' }}>
             <div className="modal-dialog modal-dialog-centered modal-xl">
-                <div className="modal-content bg-primary">
+                <div className="modal-content bg-secondary">
                     <div className="modal-header">
                         <h5 className="modal-title">Administrar Imágenes - {folder}</h5>
                         <button type="button" className="btn-close" onClick={onClose}></button>

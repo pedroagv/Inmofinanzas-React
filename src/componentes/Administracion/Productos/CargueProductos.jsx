@@ -1,11 +1,10 @@
 import React from 'react'
-import DynamicForm from './DynamicForm'
-import AdminListaProductos from './AdminListaProductos'
+import FormDinamicoCrearProductos from './FormDinamicoCrearProductos'
 
 function CargueProductos() {
   return (
     <div className='container p-3'>
-        <DynamicForm />       
+        <FormDinamicoCrearProductos />       
     </div>
   )
 }

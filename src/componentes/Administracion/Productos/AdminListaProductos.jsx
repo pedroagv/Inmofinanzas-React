@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { apiUrl } from '../../../config';
 import AdminImagenPorProductoModal from '../Imagenes/AdminImagenPorProductoModal';
+import { Link } from 'react-router-dom';
 
 function AdminListaProductos() {
     const [productos, setProductos] = useState([]);
@@ -26,8 +27,9 @@ function AdminListaProductos() {
 
     const handleEdit = (id) => {
         console.log(`Editar producto con id: ${id}`);
-        // Lógica para manejar la edición del producto
+        document.location.href = `/AdminEditarProducto/${id}`; // Lógica para manejar la edición del producto
     };
+
 
     const handleVerImagenes = (id) => {
         setCurrentFolder(id);
@@ -123,9 +125,15 @@ function AdminListaProductos() {
     return (
         <div className='container'>
             <h3 className="font-bold text-dark my-4 border-bottom border-2 text-white">Listado de productos en la BD</h3>
-            <div className='row row-cols-1 row-cols-md-4 g-4'>
+
+            <div className='row'>
+                <div className='col-12 pb-md-3'>
+                    <Link to={'/AdminCargueProductos'} className="btn btn-outline-primary" >
+                        Crear producto nuevo
+                    </Link>
+                </div>
                 {productos && productos.map(producto => (
-                    <div key={producto.id} className='col'>
+                    <div key={producto.id} className='col-12 col-sm-3 col-md-4 g-4'>
                         <div className='card h-100'>
                             <div className='card-body'>
                                 <h5 className='card-title'>{producto.nombre}</h5>
@@ -136,7 +144,7 @@ function AdminListaProductos() {
                                 </div>
                                 <div className='d-grid gap-2'>
                                     <button className='btn btn-outline-primary' onClick={() => handleVerImagenes(producto.id)}>Ver imagenes</button>
-                                    <button className='btn btn-outline-info' onClick={() => handleEdit(producto.id)}>Editar</button>
+                                    <button className='btn btn-outline-info' onClick={() => handleEdit(producto.id)}>Editar producto</button>
                                     <button className='btn btn-outline-danger' onClick={() => handleDelete(producto.id)}>Eliminar</button>
                                 </div>
                             </div>

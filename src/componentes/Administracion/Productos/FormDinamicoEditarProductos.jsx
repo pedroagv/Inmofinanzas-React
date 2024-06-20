@@ -1,49 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { apiUrl } from '../../../config';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
-function DynamicForm() {
-
-  const [folder, setFolder] = useState(generateNewId()); // Set the initial state for folder using generateNewId
-
-
-  const CamposIniciales = {
-    nombre: '',
-    habitaciones: '',
-    piso: '',
-    estudio: '',
-    patio: '',
-    estrato: '',
-    baños: '',
-    deposito: '',
-    balcon: '',
-    chimenea: '',
-    ascensor: '',
-    parqueadero: '',
-    descripcion: '',
-    categoria: 'Arriendo, Ventas, Permurtas',
-    precio: '',
-    direccion: '',
-    area: '',
-    destacado: null,
-    carpeta: folder,
-    Fecha: new Date().toLocaleString(),
-    // imagenPrincipal: '',
-  };
-
-
-  const [inputList, setInputList] = useState([{ id: '', fields: { ...CamposIniciales } }]);
+function FormDinamicoEditarProductos() {
+  const { id } = useParams();
+  const [CamposIniciales, setCamposIniciales] = useState({});
+  const [inputList, setInputList] = useState([]);
   const [newField, setNewField] = useState('');
+
+  useEffect(() => {
+    const obtenerProducto = async () => {
+      try {
+        const response = await axios.get(`${apiUrl}/productos/${id}`);
+        setCamposIniciales(response.data);
+
+      } catch (error) {
+        console.error('Error fetching product:', error);
+      }
+    };
+
+    obtenerProducto();
+  }, [id]);
+
+  useEffect(() => {
+    let listado = [{ fields: { ...CamposIniciales } }];
+    const filteredListado = listado.map(item => {
+      const newFields = Object.entries(item.fields)
+        .filter(([key]) => key !== 'imagenes' && key !== 'Fecha' && key !== 'carpeta')
+        .reduce((acc, [key, value]) => {
+          acc[key] = value;
+          return acc;
+        }, {});
+
+      return { fields: newFields };
+    });
+
+    setInputList(filteredListado);
+  }, [CamposIniciales]);
 
   const handleInputChange = (e, index, fieldName) => {
     const { value } = e.target;
     const list = [...inputList];
     list[index].fields[fieldName] = value;
     setInputList(list);
-  };
-
-  function generateNewId() {
-    // Generar un nuevo identificador único utilizando el timestamp actual
-    return Date.now().toString(36) + Math.random().toString(36).substring(2);
   };
 
   const handleAddField = (index) => {
@@ -56,41 +56,31 @@ function DynamicForm() {
     }
   };
 
-  // const handleRemoveProductClick = (index) => {
-  //     const list = [...inputList];
-  //     list.splice(index, 1);
-  //     setInputList(list);
-  // };
-
   const handleRemoveFieldClick = (index, fieldName) => {
     const list = [...inputList];
     delete list[index].fields[fieldName];
     setInputList(list);
   };
 
-  // const handleImagesUpload = (uploadedImages) => {
-  //   const list = [...inputList];
-  //   list[0].fields.imagenes = uploadedImages; // Update the images field with the uploaded images
-  //   setInputList(list);
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const method = inputList.length === 1 && inputList[0].id ? 'PUT' : 'POST';
-      const url = method === 'PUT' ? `${apiUrl}/productos/${inputList[0].id}` : `${apiUrl}/productos`;
+
+      debugger
+      const method = 'PUT';
+      const url = `${apiUrl}/productos/${inputList[0].fields.id}`;
 
       const response = await fetch(url, {
         method: method,
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(method === 'PUT' ? inputList[0].fields : inputList.map(item => item.fields))
+        body: JSON.stringify(inputList[0].fields)
       });
 
       if (response.ok) {
-        alert(method === 'PUT' ? 'Product updated successfully!' : 'Products added successfully!');
-        setInputList([{ id: '', fields: {} }]);
+        alert('Product updated successfully!');
+        document.location.href = '/AdminListaProductos'
       } else {
         alert('Error adding/updating product');
       }
@@ -100,9 +90,12 @@ function DynamicForm() {
   };
 
   return (
+    <div className='container pt-3'>
     <form onSubmit={handleSubmit}>
-      <a href='/AdminListaProductos'>Lista de Productos</a>
-      <h3 className="font-bold text-dark my-4 border-bottom border-2 text-white">Agregar nuevo producto</h3>
+      <Link to={'/AdminListaProductos'} className="btn btn-outline-primary" >
+        ver Listado de Productos
+      </Link>
+      <h3 className="font-bold text-dark my-4 border-bottom border-2 text-white">Editando el Producto: {CamposIniciales && CamposIniciales.nombre} </h3>
 
       {inputList.map((product, i) => (
         <div key={i} className='row'>
@@ -125,7 +118,7 @@ function DynamicForm() {
         </div>
       ))}
 
-      <button className='btn btn-outline-success text-white' type="submit">Guardar nuevo producto</button>
+      <button className='btn btn-outline-success text-white' type="submit">Actualizar producto</button>
       <hr />
 
       <div className='row'>
@@ -144,7 +137,8 @@ function DynamicForm() {
         </div>
       </div>
     </form>
+    </div>
   );
 }
 
-export default DynamicForm;
+export default FormDinamicoEditarProductos;

@@ -8,6 +8,7 @@ import CargueProductos from './componentes/Administracion/Productos/CargueProduc
 import AdminListaProductos from './componentes/Administracion/Productos/AdminListaProductos';
 import { useEffect } from 'react';
 import Detalle from './componentes/productos/Detalles/Detalle';
+import FormDinamicoEditarProductos from './componentes/Administracion/Productos/FormDinamicoEditarProductos';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/RedesSociales" element={<RedSocial />} />
           <Route path="/AdminCargueProductos" element={<CargueProductos />} />
           <Route path="/AdminListaProductos" element={<AdminListaProductos />} />
+          <Route path="/AdminEditarProducto/:id" element={<FormDinamicoEditarProductos />} />
           <Route path="/Detalle/:id" element={<Detalle />} />          
         </Routes>
         <Footer />

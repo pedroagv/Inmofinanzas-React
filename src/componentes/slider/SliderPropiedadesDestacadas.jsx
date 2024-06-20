@@ -37,7 +37,7 @@ function SliderPropiedadesDestacadas() {
                 <div className="carousel-inner">
                     {carouselItems.filter(filtro => filtro.destacado === 'true').map((product, index) => (
                         <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`} onClick={() => handleClick(product.id)} >
-                            <img src={product.imagenes[0].src} className="d-block w-100" alt={product.imagenes[0].alt} />
+                            <img src={product?.imagen_portada == null ? product.imagenes[0].src : product?.imagen_portada} className="d-block w-100" alt={product.nombre} />
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>{product.nombre}</h5>
                                 <p>{product.descripcion}</p>

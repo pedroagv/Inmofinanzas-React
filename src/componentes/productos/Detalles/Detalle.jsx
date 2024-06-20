@@ -21,7 +21,7 @@ const Detalle = () => {
         };
 
         obtenerProducto();
-    }, []); // Asegúrate de ajustar las dependencias según tus necesidades
+    }, []);
 
     return (
         <div className="container">
