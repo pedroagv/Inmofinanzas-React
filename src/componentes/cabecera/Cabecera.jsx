@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { apiUrl } from '../../config';
-import '../cabecera/Cabecera.css';
+import './Cabecera.css'; // Importa el archivo de estilos CSS
 import { Link } from 'react-router-dom';
 
 function Cabecera() {
@@ -21,7 +21,7 @@ function Cabecera() {
     }, []);
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-white transparent-nav">
             <div className="container-fluid">
                 <img src="/imagenes/InmoFinanzas.png" className='navbar-logo' alt="InmoFinanzas Logo" />
                 <Link to={`/`} className="m-1 navbar-brand color-navbar-brand fw-bold" >
@@ -36,7 +36,6 @@ function Cabecera() {
                             <Link key={item.id} id={item.id} to={item.link} className="nav-link fw-bolder">
                                 {item.categoria}
                             </Link>
-                            // <a key={item.id} id={item.id} className="nav-link fw-bolder" href={item.link}>{item.categoria}</a>
                         ))}
                     </div>
                 </div>

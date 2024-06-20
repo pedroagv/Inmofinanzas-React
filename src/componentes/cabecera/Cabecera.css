@@ -5,8 +5,41 @@
     /* permite que la altura se ajuste automáticamente */
 }
 
-
-
 .navbar-inmofinanza {
     background: linear-gradient(to right, var(--color-inicial-inmofinanza), var(--color-final-inmofinanza));
 }
+
+/* Estilo para el navbar cuando está completamente blanco */
+.navbar-inmofinanza {
+    background: linear-gradient(to right, var(--color-inicial-inmofinanza), var(--color-final-inmofinanza));
+}
+
+/* Estilo para el navbar cuando está completamente transparente */
+.navbar {
+    transition: background-color 0.3s ease-in-out; /* Transición suave para el cambio de fondo */
+    background-color: transparent; /* Fondo inicialmente transparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque si lo deseas */
+    border: none; /* Quitamos el borde */
+}
+
+/* Color del texto en la marca del navbar */
+.navbar-brand {
+    color: white; /* Color del texto cuando el navbar está blanco */
+}
+
+/* Color de los enlaces del navbar */
+.navbar-nav .nav-link {
+    color: rgb(64, 64, 64) !important; /* Color de los enlaces cuando el navbar está blanco */
+    margin-right: 15px; /* Espaciado entre enlaces */
+}
+
+/* Color del ícono del botón de toggle del navbar */
+.navbar-toggler-icon {
+    background-color: white; /* Color del ícono del toggler */
+}
+
+/* Padding-top para el body para evitar solapamientos */
+body {
+    padding-top: 80px; /* Ajusta este valor según la altura de tu navbar */
+}
+
