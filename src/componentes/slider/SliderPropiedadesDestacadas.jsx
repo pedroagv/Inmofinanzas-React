@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import '../slider/SliderPropiedadesDestacadas.css';
 import { apiUrl } from '../../config';
+import { Link } from 'react-router-dom';
 
 function SliderPropiedadesDestacadas() {
     // const [carouselItems, setCarouselItems] = useState([]);
@@ -47,12 +48,14 @@ function SliderPropiedadesDestacadas() {
                 </div>
                 <div className="carousel-inner">
                     {productos.filter(filtro => filtro.destacado === 'true').map((product, index) => (
-                        <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`} onClick={() => handleClick(product.id)} >
-                            <img src={product?.imagen_portada == null ? product.imagenes[0].src : product?.imagen_portada} className="d-block w-100" alt={product.nombre} />
-                            <div className="carousel-caption d-none d-md-block">
-                                <h5>{product.nombre}</h5>
-                                <p>{product.descripcion}</p>
-                            </div>
+                        <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`} >
+                            <Link to={`/Detalle/${product.id}`} >
+                                <img src={product?.imagen_portada == null ? product.imagenes[0].src : product?.imagen_portada} className="d-block w-100" alt={product.nombre} />
+                                <div className="carousel-caption d-none d-md-block">
+                                    <h5>{product.nombre}</h5>
+                                    <p>{product.descripcion}</p>
+                                </div>
+                            </Link>
                         </div>
                     ))}
                 </div>
