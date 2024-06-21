@@ -7,19 +7,28 @@ import { Link } from 'react-router-dom';
 const ListaProductos = () => {
     const [productos, setProductos] = useState([]);
 
-    console.log(apiUrl);
     useEffect(() => {
-        fetch(`${apiUrl}/productos`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        const fetchProductos = async () => {
+            try {
+                let storedProductos = localStorage.getItem('productos');
+                if (storedProductos) {
+                    setProductos(JSON.parse(storedProductos));
+                } else {
+                    const response = await fetch(`${apiUrl}/productos`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const data = await response.json();
+                    setProductos(data);
+                    localStorage.setItem('productos', JSON.stringify(data));
                 }
-                return response.json();
-            })
-            .then(data => {
-                setProductos(data);
-            })
-            .catch(error => console.error('Error fetching products:', error));
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                // Manejar el error según tus necesidades
+            }
+        };
+
+        fetchProductos();
     }, []);
 
     return (

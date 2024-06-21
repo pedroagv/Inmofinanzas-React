@@ -7,17 +7,27 @@ function Cabecera() {
     const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
-        fetch(`${apiUrl}/categorias`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        const fetchCategorias = async () => {
+            try {
+                let storedCategorias = localStorage.getItem('categorias');
+                if (storedCategorias) {
+                    setCategorias(JSON.parse(storedCategorias));
+                } else {
+                    const response = await fetch(`${apiUrl}/categorias`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const data = await response.json();
+                    setCategorias(data);
+                    localStorage.setItem('categorias', JSON.stringify(data));
                 }
-                return response.json();
-            })
-            .then(data => {
-                setCategorias(data);
-            })
-            .catch(error => console.error('Error fetching categories:', error));
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+                // Manejar el error según tus necesidades
+            }
+        };
+
+        fetchCategorias();
     }, []);
 
     return (

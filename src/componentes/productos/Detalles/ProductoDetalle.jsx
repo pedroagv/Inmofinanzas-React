@@ -4,33 +4,6 @@ import { socialMediaData } from '../../redes-sociales/SocialMediaData';
 
 const ProductoDetalle = ({ productoData }) => {
 
-  useEffect(() => {
-    // Función para crear o actualizar la etiqueta <meta name="description">
-    const updateMetaDescription = () => {
-      if (productoData) {
-        let metaDescription = document.querySelector('meta[name="description"]');
-        
-        // Si la etiqueta no existe, la creamos
-        if (!metaDescription) {
-          metaDescription = document.createElement('meta');
-          metaDescription.setAttribute('name', 'description');
-          document.head.appendChild(metaDescription);
-        }
-        
-        // Actualizamos el contenido de la etiqueta <meta name="description">
-        metaDescription.setAttribute('content', `${productoData.nombre} - ${productoData.descripcion}`);
-      }
-    };
-
-    // Llamamos a la función para crear o actualizar la descripción
-    updateMetaDescription();
-
-    // Cleanup: opcional, dependiendo de tu caso
-    return () => {
-      // Aquí puedes realizar tareas de limpieza si es necesario
-    };
-  }, [productoData]); // Se ejecuta cuando productoData cambia
-
   // Función para obtener la URL del mapa
   const getMapaUrl = () => {
     if (productoData && productoData.mapa) {
@@ -94,7 +67,7 @@ const ProductoDetalle = ({ productoData }) => {
           </div>
           <div className="col-md-12 p-3">
             {/* Ubicación y mapa */}
-            <h3 className="font-bold my-4 border-bottom border-2">Ubicación: {productoData.direccion} - Llega con Waze: <a href='https://www.waze.com/live-map/directions/co/bogota/bogota/cl.-70b-120-2?to=place.ChIJhw8oHlCDP44ROj9KcEdqnj8&from=ll.4.7180303%2C-74.1357292&utm_medium=lm_share_directions&utm_campaign=default&utm_source=waze_website'>Ir con Waze</a></h3>
+            <h3 className="font-bold my-4 border-bottom border-2">Ubicación: {productoData.direccion} </h3>
             {productoData.mapa && (
               <iframe
                 width="100%"

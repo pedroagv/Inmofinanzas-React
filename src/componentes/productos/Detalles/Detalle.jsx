@@ -12,8 +12,21 @@ const Detalle = () => {
     useEffect(() => {
         const obtenerProducto = async () => {
             try {
-                const response = await axios.get(`${apiUrl}/productos/${id}`);
-                setProductoData(response.data);
+                // Intentar obtener el producto desde localStorage
+                const productosLocalStorage = JSON.parse(localStorage.getItem('productos')) || [];
+                const productoEncontrado = productosLocalStorage.find(producto => producto.id === id);
+
+                if (productoEncontrado) {
+                    setProductoData(productoEncontrado);
+                } else {
+                    // Si no está en localStorage, realizar la solicitud al servidor
+                    const response = await axios.get(`${apiUrl}/productos/${id}`);
+                    setProductoData(response.data);
+
+                    // Actualizar localStorage con los productos actualizados (opcional)
+                    const nuevosProductos = [...productosLocalStorage, response.data];
+                    localStorage.setItem('productos', JSON.stringify(nuevosProductos));
+                }
             } catch (error) {
                 setError('No se pudo obtener el producto.');
                 console.error('Error fetching product:', error);
@@ -21,7 +34,8 @@ const Detalle = () => {
         };
 
         obtenerProducto();
-    }, []);
+    }, [id]);
+
 
     return (
         <div className="container">

@@ -3,20 +3,31 @@ import '../slider/SliderPropiedadesDestacadas.css';
 import { apiUrl } from '../../config';
 
 function SliderPropiedadesDestacadas() {
-    const [carouselItems, setCarouselItems] = useState([]);
+    // const [carouselItems, setCarouselItems] = useState([]);
+    const [productos, setProductos] = useState([]);
 
     useEffect(() => {
-        fetch(`${apiUrl}/productos`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        const fetchProductos = async () => {
+            try {
+                let storedProductos = localStorage.getItem('productos');
+                if (storedProductos) {
+                    setProductos(JSON.parse(storedProductos));
+                } else {
+                    const response = await fetch(`${apiUrl}/productos`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const data = await response.json();
+                    setProductos(data);
+                    localStorage.setItem('productos', JSON.stringify(data));
                 }
-                return response.json();
-            })
-            .then(data => {
-                setCarouselItems(data);
-            })
-            .catch(error => console.error('Error fetching products:', error));
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                // Manejar el error según tus necesidades
+            }
+        };
+
+        fetchProductos();
     }, []);
 
     const handleClick = (productId) => {
@@ -30,12 +41,12 @@ function SliderPropiedadesDestacadas() {
             <h3 className="font-bold my-4 border-bottom border-2">Propiedades destacadas</h3>
             <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-indicators">
-                    {carouselItems.filter(filtro => filtro.destacado === 'true').map((product, index) => (
+                    {productos.filter(filtro => filtro.destacado === 'true').map((product, index) => (
                         <button key={index} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={index} className={index === 0 ? "active" : ""} aria-current={index === 0 ? "true" : ""} aria-label={`Slide ${index + 1}`}></button>
                     ))}
                 </div>
                 <div className="carousel-inner">
-                    {carouselItems.filter(filtro => filtro.destacado === 'true').map((product, index) => (
+                    {productos.filter(filtro => filtro.destacado === 'true').map((product, index) => (
                         <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`} onClick={() => handleClick(product.id)} >
                             <img src={product?.imagen_portada == null ? product.imagenes[0].src : product?.imagen_portada} className="d-block w-100" alt={product.nombre} />
                             <div className="carousel-caption d-none d-md-block">
