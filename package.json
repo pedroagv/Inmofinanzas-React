@@ -9,7 +9,6 @@
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "classnames": "^2.5.1",
-    "http-proxy-middleware": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.2.3",
@@ -18,7 +17,6 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://inmofinanzasserver.onrender.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
