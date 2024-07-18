@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../../config';
 
 const QRForm = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ const QRForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/generate_qr/', formData);
+      const response = await axios.post(`${apiUrl}/generate_qr/`, formData);
       console.log('QR generado:', response.data);
       setQrImage(response.data.image_base64);
     } catch (error) {
@@ -29,7 +30,7 @@ const QRForm = () => {
         <label>
           Url para generar el QR: <br />
           <input
-            className='form form-control'
+            className='form form-control w-100'
             type="text"
             name="data"
             value={formData.data}
