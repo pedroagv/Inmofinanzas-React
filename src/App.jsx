@@ -9,6 +9,7 @@ import AdminListaProductos from './componentes/Administracion/Productos/AdminLis
 import { useEffect } from 'react';
 import Detalle from './componentes/productos/Detalles/Detalle';
 import FormDinamicoEditarProductos from './componentes/Administracion/Productos/FormDinamicoEditarProductos';
+import QRForm from './componentes/qrForm/QRForm';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/AdminListaProductos" element={<AdminListaProductos />} />
           <Route path="/AdminEditarProducto/:id" element={<FormDinamicoEditarProductos />} />
           <Route path="/Detalle/:id" element={<Detalle />} />          
+          <Route path="/GenerarQR" element={<QRForm />} />          
         </Routes>
         <Footer />
       </div>
