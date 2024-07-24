@@ -27,18 +27,17 @@ const QRForm = () => {
   return (
     <div className='container p-5'>
       <form onSubmit={handleSubmit}>
-        <label>
-          Url para generar el QR: <br />
-          <input
-            className='form form-control w-100'
-            type="text"
-            name="data"
-            value={formData.data}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <button type="submit" className='btn btn-success'>Generar QR</button>
+        <label htmlFor="inputqr">Digite su texto para generar el QR:</label>
+        <input
+          id='inputqr'
+          className='form form-control w-100 mb-3'
+          type="text"
+          name="data"
+          value={formData.data}
+          onChange={handleChange}
+          required
+        />
+        <button type="submit" className='btn btn-success w-100'>Generar QR</button>
       </form>
       {qrImage && (
         <div>

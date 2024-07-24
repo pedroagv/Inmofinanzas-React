@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import Detalle from './componentes/productos/Detalles/Detalle';
 import FormDinamicoEditarProductos from './componentes/Administracion/Productos/FormDinamicoEditarProductos';
 import QRForm from './componentes/qrForm/QRForm';
+import FormDeclaracionRenta from './componentes/formularios/FormDeclaracionRenta';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/AdminEditarProducto/:id" element={<FormDinamicoEditarProductos />} />
           <Route path="/Detalle/:id" element={<Detalle />} />          
           <Route path="/GenerarQR" element={<QRForm />} />          
+          <Route path="/encuesta-declaracion-renta" element={<FormDeclaracionRenta />} />          
         </Routes>
         <Footer />
       </div>
