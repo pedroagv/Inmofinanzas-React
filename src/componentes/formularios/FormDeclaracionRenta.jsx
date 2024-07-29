@@ -182,7 +182,7 @@ function FormDeclaracionRenta() {
                             </div>
                             <div className="col-md-6">
                                 <div className="mb-3">
-                                    <label htmlFor="declaroRenta" className="form-label">¿Declaraste renta en 2022?</label>
+                                    <label htmlFor="declaroRenta" className="form-label">¿Declaraste renta el año pasado?</label>
                                     <select id="declaroRenta" className="form-select" value={formData.declaroRenta} onChange={handleChange}>
                                         <option value="" disabled>Selecciona una opción</option>
                                         <option value="si">Sí</option>
@@ -206,7 +206,7 @@ function FormDeclaracionRenta() {
                         <div className="row mb-3">
                             <div className="col-md-12">
                                 <div className="mb-3">
-                                    <label htmlFor="ingresos" className="form-label">Ingresos Mensual promedio</label>
+                                    <label htmlFor="ingresos" className="form-label">Ingresos Mensuales promedio</label>
                                     <p className="form-text">Indique aproximadamente el total de sus ingresos, incluyendo salario, ganancias de negocios, ingresos por inversiones, alquileres, y cualquier otra fuente de ingreso.</p>
                                     <input id="ingresos" type="number" className="form-control" placeholder="0" value={formData.ingresos} onChange={handleChange} />
                                 </div>
