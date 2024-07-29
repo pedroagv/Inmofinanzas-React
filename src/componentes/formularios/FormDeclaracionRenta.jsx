@@ -132,8 +132,8 @@ function FormDeclaracionRenta() {
                         <div className="row mb-3">
                             <div className="col-md-4">
                                 <div className="mb-3">
-                                    <label htmlFor="nombre" className="form-label">Nombre completo</label>
-                                    <input id="nombre" type="text" className="form-control" placeholder="Ingresa tu nombre completo" value={formData.nombre} onChange={handleChange} />
+                                    <label htmlFor="nombre" className="form-label">Nombre</label>
+                                    <input id="nombre" type="text" className="form-control" placeholder="Ingresa tu nombre" value={formData.nombre} onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="col-md-4">
@@ -197,21 +197,21 @@ function FormDeclaracionRenta() {
                                 <option value="" disabled>Selecciona una actividad</option>
                                 <option value="empleado">Empleado</option>
                                 <option value="independiente">Independiente</option>
-                                <option value="empresario">Empresario</option>
                                 <option value="inversionista">Inversionista</option>
+                                <option value="comerciante">Comerciante</option>
                                 <option value="pensionado">Pensionado</option>
                                 <option value="otro">Otro</option>
                             </select>
                         </div>
                         <div className="row mb-3">
-                            <div className="col-md-6">
+                            <div className="col-md-12">
                                 <div className="mb-3">
-                                    <label htmlFor="ingresos" className="form-label">Ingresos</label>
-                                    <p className="form-text">Indique el total de sus ingresos, incluyendo salario, ganancias de negocios, ingresos por inversiones, alquileres, y cualquier otra fuente de ingreso.</p>
+                                    <label htmlFor="ingresos" className="form-label">Ingresos Mensual promedio</label>
+                                    <p className="form-text">Indique aproximadamente el total de sus ingresos, incluyendo salario, ganancias de negocios, ingresos por inversiones, alquileres, y cualquier otra fuente de ingreso.</p>
                                     <input id="ingresos" type="number" className="form-control" placeholder="0" value={formData.ingresos} onChange={handleChange} />
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-6 d-none">
                                 <div className="mb-3">
                                     <label htmlFor="patrimonio" className="form-label">Patrimonio</label>
                                     <p className="form-text">Indique el valor total de su patrimonio, incluyendo vivienda, vehículo, propiedades, CDT, inversiones, ahorros, criptomonedas y otros bienes.</p>
